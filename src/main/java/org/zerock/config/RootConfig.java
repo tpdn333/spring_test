@@ -1,14 +1,8 @@
 package org.zerock.config;
 
-<<<<<<< HEAD
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ComponentScan(basePackages = {"org.zerock.sample"})
-public class RootConfig {
-
-=======
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -31,8 +25,10 @@ public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");
-		hikariConfig.setJdbcUrl("jdbc:mariadb://3.36.92.67/test_database");
+//		hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");
+//		hikariConfig.setJdbcUrl("jdbc:mariadb://3.36.92.67/test_database");
+		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mariadb://3.36.92.67/test_database");
 		hikariConfig.setUsername("root");
 		hikariConfig.setPassword("wnddkdwjdqhcjfl1");
 		
@@ -48,5 +44,4 @@ public class RootConfig {
 		sqlSessionFactory.setDataSource(dataSource());
 		return (SqlSessionFactory) sqlSessionFactory.getObject();
 	}
->>>>>>> branch 'master' of https://github.com/tpdn333/spring_test.git
 }
