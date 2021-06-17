@@ -13,6 +13,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+<<<<<<< HEAD
 @Log4j
 @ContextConfiguration(classes = {RootConfig.class})
 public class SampleTests {
@@ -30,4 +31,21 @@ public class SampleTests {
 		log.info(restaurant.getChef());
 	}
 
+=======
+@ContextConfiguration(classes = {RootConfig.class})
+@Log4j
+public class SampleTests {
+	
+	@Setter(onMethod_ = { @Autowired })
+	private Restaurant restaurant;
+	
+	@Test
+	public void testExist() {
+		assertNotNull(restaurant);
+		
+		log.info(restaurant);
+		log.info("======================");
+		log.info(restaurant.getChef());
+	}
+>>>>>>> branch 'master' of https://github.com/tpdn333/spring_test.git
 }
