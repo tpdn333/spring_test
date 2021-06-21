@@ -17,7 +17,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 // root-context.xml 설정파일을 대신하는 class
 @Configuration
-@ComponentScan(basePackages = {"org.zerock.sample"})
+@ComponentScan(basePackages = {"org.zerock.service"})
 @MapperScan(basePackages = {"org.zerock.mapper"})
 public class RootConfig {
 	
@@ -28,7 +28,7 @@ public class RootConfig {
 //		hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");
 //		hikariConfig.setJdbcUrl("jdbc:mariadb://3.36.92.67/test_database");
 		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mariadb://3.36.92.67/test_database");
+		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mariadb://3.36.92.67/spr2");
 		hikariConfig.setUsername("root");
 		hikariConfig.setPassword("wnddkdwjdqhcjfl1");
 		
