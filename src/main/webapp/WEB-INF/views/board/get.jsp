@@ -36,6 +36,25 @@
 						onclick="location.href='${appRoot}/board/modify?bno=<c:out value="${board.bno }"/>'">Modify</button>
 					<button data-oper='list' class="btn btn-default"
 						onclick="location.href='${appRoot}/board/list'">List</button>
+					<form id="operForm" action="${appRoot }/boar/modify" method="get">
+						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>
+					</form>
+					<script type="text/javascript">
+					$(document).ready(function () {
+						var operForm = $("#operForm");
+						
+						$("button[data-oper='modify']").on("click", function(e) {
+							operForm.attr("action", "${appRoot}/board/modify").submit();
+						});
+						
+						$("button[data-oper='list']").on("click", function(e) {
+							operForm.find("#bno").remove();
+							operForm.attr("action", "${appRoot}/board/list");
+							operForm.submit();
+						});
+					});
+					
+					</script>
 			</div>
 			<!-- end panel body -->
 		</div>

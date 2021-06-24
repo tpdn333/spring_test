@@ -8,7 +8,28 @@
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-
+<script type="text/javascript">
+$(document).ready(function() {
+	var formObj = $("form");
+	
+	$('button').on("click", function(e) {
+		e.preventDefault();
+		
+		var operation = $(this).data("oper");
+		
+		console.log(operation);
+		
+		if(operation === 'remove') {
+			formObj.attr("action", "${appRoot }/board/remove");
+		} else if(operation === 'list') {
+			// move to list
+			formObj.attr("action", "${appRoot}/board/list").attr("method", "get");
+			formObj.empty();
+		}
+		formObj.submit();
+	});
+})
+</script>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -34,11 +55,11 @@
 					</div>
 					<div class="form-group">
 						<label>RegDate</label><input class="form-control" name="regdate"
-							value='<fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/>' readonly="readonly"/>
+							value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regdate }"/>' readonly="readonly"/>
 					</div>
 					<div class="form-group">
 						<label>Update Date</label><input class="form-control" name="updateDate"
-							value='<fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }"/>' readonly="readonly"/>
+							value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate }"/>' readonly="readonly"/>
 					</div>
 					<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
 					<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
