@@ -59,4 +59,11 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(bno) == 1;
 	}
 
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("전체 게시물 조회");
+		
+		return mapper.getTotalCount(cri);
+	}
+
 }
