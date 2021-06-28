@@ -3,6 +3,24 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
+	<sql id="criteria">
+		<where>
+	     <foreach collection="typeArr" separator="OR" item="type">
+	     	<choose>
+	     		<when test='type == "T"'>
+	     			title LIKE CONCAT('%', #{keyword}, '%')
+	     		</when>
+	     		<when test='type == "W"'>
+	     			writer LIKE CONCAT('%', #{keyword}, '%')
+	     		</when>
+	     		<when test='type == "C"'>
+	     			content LIKE CONCAT('%', #{keyword}, '%')
+	     		</when>
+	     	</choose>
+	     </foreach>
+     </where>
+	</sql>
+	
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 		<![CDATA[
 		 SELECT * FROM tbl_board
@@ -13,8 +31,8 @@
 	<select id="getTotalCount" resultType="int">
 		<![CDATA[
 		SELECT COUNT(*) FROM tbl_board 
-		WHERE bno > 0
 		]]>
+		<include refid="criteria"></include>
 	</select>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
@@ -28,7 +46,9 @@
     		updatedate updateDate
     
  	    FROM tbl_board
-     
+     	]]>
+     	<include refid="criteria"></include>
+     	<![CDATA[
     	ORDER BY bno DESC
      
      	LIMIT #{from}, #{amount}
