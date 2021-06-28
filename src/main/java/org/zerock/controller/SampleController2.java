@@ -1,15 +1,10 @@
 package org.zerock.controller;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("*sample/*")
 @Log4j
-public class SampleController {
+public class SampleController2 {
 
 	/*
 	 * @InitBinder public void InitBinder(WebDataBinder binder) { SimpleDateFormat
