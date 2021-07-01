@@ -43,6 +43,10 @@
 						<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
 						<input type="hidden" name="type" value='<c:out value="${cri.type }"/>'>
 					</form>
+					<script type="text/javascript">
+						var appRoot = "${appRoot}";
+						var boardBno = "${board.bno}";
+					</script>
 					<script type="text/javascript" src="${appRoot }/resources/js/reply.js"></script>
 					<script type="text/javascript">
 						console.log("===========");
