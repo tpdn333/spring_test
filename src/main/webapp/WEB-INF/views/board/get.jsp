@@ -49,18 +49,41 @@
 					</script>
 					<script type="text/javascript" src="${appRoot }/resources/js/reply.js"></script>
 					<script type="text/javascript">
-						console.log("===========");
 						console.log("JS TEST");
 						
 						var bnoValue = '<c:out value="${board.bno}"/>';
 						
-						// for replyService add test
-						replyService.add(
-							{reply : "JS Test", replyer : "tester", bno : bnoValue},
-							function(result) {
-								alert("RESULT : " + result);
+						// reply List Test
+						/* replyService.getList({ bno: bnoValue, page: 1 }, function (list) {
+							for (var i = 0, len = list.length || 0; i < len; i++){
+							console.log(list[i]);
 							}
-						);
+						}); */
+						
+						// 2번 댓글 삭제 테스트
+						/* replyService.remove(2, function(cnt) {
+							console.log(cnt);
+							
+							if(cnt === "success") {
+								alert("REMOVED");
+							}
+						}, function(err) {
+							alert("ERROR");
+						}); */
+						
+						// 3번 댓글 수정
+						/* replyService.update({
+							rno: 3,
+							bno: bnoValue,
+							reply: "Modifyed Reply..."
+						}, function(result) {
+							alert("수정 완료,,,");
+						}); */
+						
+						// 9번 댓글 얻어오기
+						replyService.get(9, function(data){
+							console.log(data);
+						})
 					</script>
 					<script type="text/javascript">
 					$(document).ready(function () {
