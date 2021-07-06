@@ -24,8 +24,21 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
-		SELECT * FROM tbl_reply
+		SELECT 
+			rno rno,
+			bno bno,
+			reply reply,
+			replyer replyer,
+			replydate replyDate,
+			updatedate updateDate
+		FROM tbl_reply
 		WHERE bno = #{bno}
 		ORDER BY rno ASC
+		LIMIT #{cri.from}, #{cri.amount}
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		SELECT COUNT(rno) FROM tbl_reply
+		WHERE bno = #{bno}
 	</select>
 </mapper>
