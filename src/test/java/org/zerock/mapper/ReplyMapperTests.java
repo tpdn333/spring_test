@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -31,7 +33,7 @@ public class ReplyMapperTests {
 	
 	@Test
 	public void testCreate() {
-		IntStream.range(1, 50).forEach(i -> {
+		IntStream.range(1, 10).forEach(i -> {
 			ReplyVO vo = new ReplyVO();
 			
 			// 게시물 번호
@@ -78,6 +80,18 @@ public class ReplyMapperTests {
 		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
 		
 		replies.forEach(reply -> log.info(reply));
-		}
- 
+	}
+	
+	@Test
+	public void testList2() {
+		Criteria cri = new Criteria(2,10);
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 102L);
+		
+		replies.forEach(reply -> log.info(reply));
+	}
+	
+	@Test
+	public void testCountBnBno() {
+		assertEquals(15, mapper.getCountByBno(102L));
+	}
 }
