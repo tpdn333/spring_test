@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -41,21 +42,23 @@ public class ReplyController {
 		log.info("Reply INSERT CNT : " + insertCount);
 		
 		// 삼항 연산자
-		return insertCount == 1 ? new ResponseEntity<>("Success", HttpStatus.OK)
+		return insertCount == 1 ? new ResponseEntity<>("Reply register success !", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@GetMapping(value = "pages/{bno}/{page}",
 				produces = { MediaType.APPLICATION_XML_VALUE,
-							MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<ReplyVO>> getList(
-			@PathVariable int page,
-			@PathVariable Long bno) {
-		log.info("getList method 실행");
+							MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<ReplyPageDTO> getList(
+			@PathVariable("page") int page,
+			@PathVariable("bno") Long bno) {
 		Criteria cri = new Criteria(page, 10);
-		log.info(cri);
 		
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+		log.info("get Reply List bno : " + bno);
+		
+		log.info("cri : " + cri);
+		
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "{rno}",
@@ -72,7 +75,7 @@ public class ReplyController {
 	public ResponseEntity<String> remove(@PathVariable Long rno) {
 		log.info("remove : "+ rno);
 		
-		return service.remove(rno) == 1 ? new ResponseEntity<>("remove success", HttpStatus.OK)
+		return service.remove(rno) == 1 ? new ResponseEntity<>("Reply remove success !", HttpStatus.OK)
 										: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
@@ -87,7 +90,7 @@ public class ReplyController {
 		log.info("modify : " + rno);
 		
 		return service.modify(vo) == 1
-				? new ResponseEntity<>("modify success", HttpStatus.OK)
+				? new ResponseEntity<>("Reply modify success !", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
