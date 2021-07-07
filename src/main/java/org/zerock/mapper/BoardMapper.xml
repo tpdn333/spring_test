@@ -43,8 +43,8 @@
     		content content,
     		writer writer,
     		regdate regdate,
-    		updatedate updateDate
-    
+    		updatedate updateDate,
+    		replyCnt replyCnt
  	    FROM tbl_board
      	]]>
      	<include refid="criteria"></include>
@@ -80,6 +80,11 @@
 			content = #{content},
 			writer = #{writer},
 			updatedate = NOW()
+		WHERE bno = #{bno}
+	</update>
+	
+	<update id="updateReplyCnt">
+		UPDATE tbl_board SET replyCnt = replyCnt + #{amount}
 		WHERE bno = #{bno}
 	</update>
 </mapper>
