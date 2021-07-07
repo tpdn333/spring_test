@@ -271,7 +271,7 @@ $(document).ready(function () {
 		replyService.update(reply, function(result) {
 			alert("result");
 			modal.modal("hide");
-			showList(1);
+			showList(pageNum);
 		});
 	});
 	
@@ -281,7 +281,7 @@ $(document).ready(function () {
 		replyService.remove(rno, function(result) {
 			alert(result);
 			modal.modal("hide");
-			showList(1);
+			showList(pageNum);
 		});
 	});
 	
