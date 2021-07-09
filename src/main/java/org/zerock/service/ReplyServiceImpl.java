@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,9 +67,18 @@ public class ReplyServiceImpl implements ReplyService{
 
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-		return new ReplyPageDTO(
-				mapper.getCountByBno(bno),
-				mapper.getListWithPaging(cri, bno));
+		int total = mapper.getCountByBno(bno);
+//		int lastpage = (total-1) / cri.getAmount() + 1;
+//		cri.setPageNum(lastpage);
+
+		
+		List<ReplyVO> list = new ArrayList<>(); 
+		
+		if (cri.getFrom() >= 0) {
+			list = mapper.getListWithPaging(cri, bno);
+		}
+		log.info("total : " + total);
+		return new ReplyPageDTO(total, list);
 	}
 
 }
