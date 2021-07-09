@@ -129,6 +129,7 @@ $(document).ready(function () {
 				
 				if(page == -1) {
 					pageNum = Math.ceil(replyCnt / 10.0);
+					console.log(pageNum);
 					showList(pageNum);
 					return;
 				}
@@ -238,8 +239,8 @@ $(document).ready(function () {
 			modal.find("input").val("");
 			modal.modal("hide");
 			
-			// showList(1);
-			showList(-1);
+			//showList(1);
+			 showList(-1);
 		});
 	});
 	
@@ -284,8 +285,6 @@ $(document).ready(function () {
 			showList(pageNum);
 		});
 	});
-	
-	
 });
 </script>
 
