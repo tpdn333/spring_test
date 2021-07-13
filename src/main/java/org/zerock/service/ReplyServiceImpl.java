@@ -66,8 +66,14 @@ public class ReplyServiceImpl implements ReplyService{
 
 	@Override
 	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-		return new ReplyPageDTO(
-				mapper.getCountByBno(bno),
+		System.out.println("ReplyServiceImpl - getListPage - Criteria에 넘어온 page : " + cri.getPageNum());
+		int replyCnt = mapper.getCountByBno(bno);
+		if (cri.getPageNum() == -1) {
+			int pageNum = (int) Math.ceil(replyCnt / 10.0);
+			cri.setPageNum(pageNum);
+		}
+		System.out.println("ReplyServiceImpl - getListPage - Criteria에 저장된 page : " + cri.getPageNum());
+		return new ReplyPageDTO(replyCnt,
 				mapper.getListWithPaging(cri, bno));
 	}
 
