@@ -116,7 +116,7 @@ $(document).ready(function () {
 	showList(1);
 
 	function showList(page) {
-		console.log("show list " + page);
+		console.log("get.jsp에 show list " + page);
 		
 		replyService.getList({
 			bno: bnoValue,
@@ -127,12 +127,12 @@ $(document).ready(function () {
 				console.log("list : " + list);
 				console.log(list);
 				
-				if(page == -1) {
+				/* if(page == -1) {
 					pageNum = Math.ceil(replyCnt / 10.0);
 					console.log(pageNum);
 					showList(pageNum);
 					return;
-				}
+				} */
 				var str = "";
 				
 				if (list == null || list.length == 0) {
@@ -155,7 +155,7 @@ $(document).ready(function () {
     var replyPageFooter = $(".panel-footer");
     
     function showReplyPage(replyCnt){
-      
+      console.log("showReplyPage에서 받은 replyCnt 값: " + replyCnt);
       var endNum = Math.ceil(pageNum / 10.0) * 10;  
       var startNum = endNum - 9; 
       
